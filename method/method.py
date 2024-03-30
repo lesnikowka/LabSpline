@@ -133,14 +133,15 @@ def calculateMain(N, A, B, a_, b_, func, funcd, func2d):
     a, b, c, d, xval = splainCoef(A, B, N, a_, b_, func)
     a_, b_, c_, d_ = splainDer(a,b,c,d)
     a__, b__, c__, d__ = splainDer(a_, b_, c_, d_)
-    y = [splain(a,b,c,d, xval, N, x) for x in xval]
-    yy = [func(x) for x in xval]
-    y_ = [splain(a_, b_, c_, d_, xval, N, x) for x in xval]
-    yy_ = [funcd(x) for x in xval]
-    y__ = [splain(a__, b__, c__, d__, xval, N, x) for x in xval]
-    yy__ = [func2d(x) for x in xval]
+    xx = np.linspace(A, B, 2 * N + 1)
+    y = [splain(a,b,c,d, xval, N, x) for x in xx]
+    yy = [func(x) for x in xx]
+    y_ = [splain(a_, b_, c_, d_, xval, N, x) for x in xx]
+    yy_ = [funcd(x) for x in xx]
+    y__ = [splain(a__, b__, c__, d__, xval, N, x) for x in xx]
+    yy__ = [func2d(x) for x in xx]
 
-    return xval, [a,b,c,d], [y,yy], [y__,yy__], [y__,yy__]
+    return xx, [a,b,c,d], [y,yy], [y_,yy_], [y__,yy__], xval
 
 def calculateMain11(N, A, B, a_, b_):
     return calculateMain(N, A, B, a_, b_, Task1Func1, dTask1Func1, d2Task1Func1)
