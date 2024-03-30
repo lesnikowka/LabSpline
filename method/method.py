@@ -30,7 +30,7 @@ def dTask1Func2(x): #Производная второй функции
     return (np.sin(x) + 2 * x * np.cos(x)) / (2 * x ** 0.5)
 
 
-def d2Task1Func1(x): #Вторая производная второй функции
+def d2Task1Func2(x): #Вторая производная второй функции
     return (4 * x * np.cos(x) - 4 * x ** 2 * np.sin(x) - np.sin(x)) / (4 * x * x ** 0.5)
 
 

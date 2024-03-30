@@ -62,10 +62,6 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.DerPlane.setPixmap(self.resizeImage("../planes/funcd.png", self.DerPlane))
         self.Der2Plane.setPixmap(self.resizeImage("../planes/func2d.png", self.Der2Plane))
 
-
-
-
-
     def setUnchecked(self, ignored):
         for i in range(len(self.elems)):
             if not self.elems[i] is ignored:

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="FuncPlaneTab">
      <attribute name="title">
@@ -93,10 +93,10 @@
      <widget class="QTableWidget" name="ErrorRateTable">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>851</width>
-        <height>541</height>
+        <x>0</x>
+        <y>0</y>
+        <width>871</width>
+        <height>571</height>
        </rect>
       </property>
      </widget>
@@ -108,10 +108,10 @@
      <widget class="QTableWidget" name="GridValuesTable">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>831</width>
-        <height>541</height>
+        <x>0</x>
+        <y>0</y>
+        <width>871</width>
+        <height>571</height>
        </rect>
       </property>
      </widget>
@@ -204,7 +204,7 @@
        <item row="1" column="2">
         <widget class="QLineEdit" name="bBox">
          <property name="text">
-          <string>1</string>
+          <string>2</string>
          </property>
         </widget>
        </item>
@@ -232,7 +232,7 @@
        <item row="0" column="2">
         <widget class="QLineEdit" name="aBox">
          <property name="text">
-          <string>0</string>
+          <string>0.2</string>
          </property>
         </widget>
        </item>
