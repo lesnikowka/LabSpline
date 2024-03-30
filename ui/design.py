@@ -63,7 +63,7 @@ class Ui_MainWindow(object):
         self.splineCoefTable.setRowCount(0)
         self.splineCoefTab.addTab(self.tab, "")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 11, 231, 621))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 11, 261, 621))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)

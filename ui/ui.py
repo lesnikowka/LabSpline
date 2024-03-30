@@ -77,7 +77,6 @@ max|F''(xi)-S''(xi)| = %
             return number[:prec]
         return number[0:min(prec, index)] + number[index:]
 
-
     def addRowToTable(self, table, data):
         table.insertRow(table.rowCount())
         rowCount = table.rowCount()
