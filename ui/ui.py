@@ -29,6 +29,21 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.splineCoefTable.setHorizontalHeaderLabels(["i", "xi-1", "xi", "ai", "bi", "ci", "di"])
         self.splineCoefTable.verticalHeader().hide()
 
+        self.main1info = """Сетка сплайна: n = %
+Контрольная сетка: N = %
+Погрешность сплайна на 
+контрольной сетке
+max|F(xi)-S(xi)| = % 
+при x = %
+Погрешность производной на 
+контрольной сетке
+max|F'(xi)-S'(xi)| = % 
+при x = %
+Погрешность второй производной на 
+контрольной сетке
+max|F''(xi)-S''(xi)| = %
+при x = %"""
+
     def goButtonClicked(self):
         if self.isMain11.isChecked():
             self.processMain1(method.method.calculateMain11)
@@ -63,6 +78,11 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         for i in range(len(a)):
             self.addRowToTable(self.splineCoefTable, [i, xval[i], xval[i+1], a[i], b[i], c[i], d[i]])
 
+    def fillInfo(self, text, data):
+        for val in data:
+            text = text.replace("%", str(val), 1)
+        return text
+
     def processMain1(self, calcf):
         n, A, B, a_, b_ = self.parseCoefs()
         data = calcf(n, a_, b_, A, B)
@@ -76,6 +96,8 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.DerPlane.setPixmap(self.resizeImage("../planes/funcd.png", self.DerPlane))
         self.Der2Plane.setPixmap(self.resizeImage("../planes/func2d.png", self.Der2Plane))
         self.fillSplineTable(*(data[1]), data[5])
+        self.info.setText(self.fillInfo(self.main1info, [n, 2 * n + 1, max(err), data[0][err.index(max(err))]
+            , max(err_), data[0][err_.index(max(err_))], max(err__), data[0][err__.index(max(err__))]]))
 
 
     def setUnchecked(self, ignored):

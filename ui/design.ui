@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1152</width>
-    <height>668</height>
+    <width>1168</width>
+    <height>689</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QTabWidget" name="splineCoefTab">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>280</x>
       <y>10</y>
       <width>881</width>
       <height>601</height>
@@ -138,7 +138,7 @@
       <x>20</x>
       <y>11</y>
       <width>231</width>
-      <height>601</height>
+      <height>621</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -302,7 +302,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1152</width>
+     <width>1168</width>
      <height>26</height>
     </rect>
    </property>
