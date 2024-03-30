@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="FuncPlaneTab">
      <attribute name="title">
@@ -91,21 +91,6 @@
       <string>Таблица погрешностей</string>
      </attribute>
      <widget class="QTableWidget" name="ErrorRateTable">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>871</width>
-        <height>571</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="GridValuesTab">
-     <attribute name="title">
-      <string>Таблица значений в узлах</string>
-     </attribute>
-     <widget class="QTableWidget" name="GridValuesTable">
       <property name="geometry">
        <rect>
         <x>0</x>

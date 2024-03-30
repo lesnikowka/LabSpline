@@ -54,14 +54,6 @@ class Ui_MainWindow(object):
         self.ErrorRateTable.setColumnCount(0)
         self.ErrorRateTable.setRowCount(0)
         self.splineCoefTab.addTab(self.ErrorRateTab, "")
-        self.GridValuesTab = QtWidgets.QWidget()
-        self.GridValuesTab.setObjectName("GridValuesTab")
-        self.GridValuesTable = QtWidgets.QTableWidget(self.GridValuesTab)
-        self.GridValuesTable.setGeometry(QtCore.QRect(0, 0, 871, 571))
-        self.GridValuesTable.setObjectName("GridValuesTable")
-        self.GridValuesTable.setColumnCount(0)
-        self.GridValuesTable.setRowCount(0)
-        self.splineCoefTab.addTab(self.GridValuesTab, "")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.splineCoefTable = QtWidgets.QTableWidget(self.tab)
@@ -158,7 +150,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.splineCoefTab.setCurrentIndex(5)
+        self.splineCoefTab.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -168,7 +160,6 @@ class Ui_MainWindow(object):
         self.splineCoefTab.setTabText(self.splineCoefTab.indexOf(self.DerPlaneTab), _translate("MainWindow", "Гр. производных"))
         self.splineCoefTab.setTabText(self.splineCoefTab.indexOf(self.Der2PlaneTab), _translate("MainWindow", "Гр. 2 производных"))
         self.splineCoefTab.setTabText(self.splineCoefTab.indexOf(self.ErrorRateTab), _translate("MainWindow", "Таблица погрешностей"))
-        self.splineCoefTab.setTabText(self.splineCoefTab.indexOf(self.GridValuesTab), _translate("MainWindow", "Таблица значений в узлах"))
         self.splineCoefTab.setTabText(self.splineCoefTab.indexOf(self.tab), _translate("MainWindow", "Таблица коэффициентов сплайна"))
         self.label_5.setText(_translate("MainWindow", "Тип задачи: "))
         self.isMain11.setText(_translate("MainWindow", "Основная 1.1"))
