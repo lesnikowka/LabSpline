@@ -116,48 +116,37 @@ def splain(A, B, C, D, X, n, x):
             return A[i - 1] + B[i - 1] * (x - X[i]) + (C[i - 1] / 2) * ((x - X[i]) ** 2) + (D[i - 1] / 6) * ((x - X[i]) ** 3)
         elif x == X[i]:
             return A[i - 1]
-        
 
-N = 10 #число участков сплайна
-A = 2 #граничные условия тестовая
-B = 4
-A1 = 0.2 #граничные условия первая функция
-B1 = 2
-A2 = 1 #граничные условия вторая функция
-B2 = np.pi 
-leftBound = 0
-rightBound = 0
+def splainDer(a, b, c, d):
+    a_ = a.copy()
+    b_ = b.copy()
+    c_ = c.copy()
+    d_ = d.copy()
+    for i in range(len(a_)):
+        a_[i] = b_[i]
+        b_[i] = c_[i]
+        c_[i] = d_[i]
+        d_[i] = 0
+    return a_, b_, c_, d_
 
+def calculateMain(N, A, B, a_, b_, func, funcd, func2d):
+    a, b, c, d, xval = splainCoef(A, B, N, a_, b_, func)
+    a_, b_, c_, d_ = splainDer(a,b,c,d)
+    a__, b__, c__, d__ = splainDer(a_, b_, c_, d_)
+    y = [splain(a,b,c,d, xval, N, x) for x in xval]
+    yy = [func(x) for x in xval]
+    y_ = [splain(a_, b_, c_, d_, xval, N, x) for x in xval]
+    yy_ = [funcd(x) for x in xval]
+    y__ = [splain(a__, b__, c__, d__, xval, N, x) for x in xval]
+    yy__ = [func2d(x) for x in xval]
 
-xx = np.linspace(A1, B1, 2 * N + 1)
-a, b, c, d, xval = splainCoef(A1, B1, N, leftBound, rightBound, Task1Func1)
-y = []
-for i in range(len(xx)):
-    y.append(splain(a, b, c, d, xval, N, xx[i]))
-plt.plot(xx, y)
+    return xval, [a,b,c,d], [y,yy], [y__,yy__], [y__,yy__]
 
-yy = []
-for i in range(len(xx)):
-    yy.append(Task1Func1(xx[i]))
-plt.plot(xx, yy)
-plt.show()
+def calculateMain11(N, A, B, a_, b_):
+    return calculateMain(N, A, B, a_, b_, Task1Func1, dTask1Func1, d2Task1Func1)
 
-er = []
-for i in range(len(y)):
-    er.append(abs(yy[i] - y[i]))
-print(max(er))
-
-
-
-
-
-
-
-
-
-
-
-
+def calculateMain12(N, A, B, a_, b_):
+    return calculateMain(N, A, B, a_, b_, Task1Func2, dTask1Func2, dTask1Func2)
 
 
 

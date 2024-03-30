@@ -145,6 +145,9 @@
        <property name="text">
         <string>Основная 1</string>
        </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -163,27 +166,6 @@
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="4" column="2">
-        <widget class="QLineEdit" name="nBox">
-         <property name="text">
-          <string>10</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Точность: </string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLineEdit" name="aBoundBox">
-         <property name="text">
-          <string>0</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="1">
         <widget class="QLabel" name="label_2">
          <property name="text">
@@ -191,15 +173,15 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_3">
+       <item row="3" column="1">
+        <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>S''(a) = </string>
+          <string>S''(b) = </string>
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QLineEdit" name="aBox">
+       <item row="3" column="2">
+        <widget class="QLineEdit" name="bBoundBox">
          <property name="text">
           <string>0</string>
          </property>
@@ -212,10 +194,10 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="2">
-        <widget class="QLineEdit" name="bBoundBox">
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>0</string>
+          <string>S''(a) = </string>
          </property>
         </widget>
        </item>
@@ -233,17 +215,24 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QLabel" name="label_4">
+       <item row="0" column="2">
+        <widget class="QLineEdit" name="aBox">
          <property name="text">
-          <string>S''(b) = </string>
+          <string>0</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
-        <widget class="QLineEdit" name="accBox">
+       <item row="4" column="2">
+        <widget class="QLineEdit" name="nBox">
          <property name="text">
-          <string>0.000001</string>
+          <string>10</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="aBoundBox">
+         <property name="text">
+          <string>0</string>
          </property>
         </widget>
        </item>
