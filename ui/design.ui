@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="FuncPlaneTab">
      <attribute name="title">
@@ -38,6 +38,12 @@
         <width>511</width>
         <height>301</height>
        </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="text">
        <string/>
@@ -115,14 +121,20 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>110</y>
+      <y>11</y>
       <width>231</width>
-      <height>271</height>
+      <height>601</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QLabel" name="label_5">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
         <string>Тип задачи: </string>
        </property>
@@ -151,6 +163,20 @@
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="4" column="2">
+        <widget class="QLineEdit" name="nBox">
+         <property name="text">
+          <string>10</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Точность: </string>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="2">
         <widget class="QLineEdit" name="aBoundBox">
          <property name="text">
@@ -193,6 +219,13 @@
          </property>
         </widget>
        </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Число разбиений:</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="label">
          <property name="text">
@@ -207,21 +240,41 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QLabel" name="label_6">
+       <item row="5" column="2">
+        <widget class="QLineEdit" name="accBox">
          <property name="text">
-          <string>Число разбиений:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="2">
-        <widget class="QLineEdit" name="nBox">
-         <property name="text">
-          <string>10</string>
+          <string>0.000001</string>
          </property>
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="goButton">
+       <property name="text">
+        <string>Аппроксимировать</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_9">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Справка:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="info">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
