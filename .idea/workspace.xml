@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4eda90e1-1c51-4408-8cba-3f7fd2a7d2f1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/method/method.py" beforeDir="false" afterPath="$PROJECT_DIR$/method/method.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/planes/func2d.png" beforeDir="false" afterPath="$PROJECT_DIR$/planes/func2d.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/design.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/design.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/design.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/design.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui.py" afterDir="false" />
@@ -63,16 +62,5 @@
       <updated>1711822371558</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/method/method.py</url>
-          <line>143</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

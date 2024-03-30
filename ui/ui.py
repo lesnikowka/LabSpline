@@ -25,6 +25,9 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.isMain21.stateChanged.connect(self.main21Setted)
         self.isMain22.stateChanged.connect(self.main22Setted)
         self.elems = [self.isMain11, self.isMain12, self.isMain21, self.isMain22, self.isTest]
+        self.splineCoefTable.setColumnCount(7)
+        self.splineCoefTable.setHorizontalHeaderLabels(["i", "xi-1", "xi", "ai", "bi", "ci", "di"])
+        self.splineCoefTable.verticalHeader().hide()
 
     def goButtonClicked(self):
         if self.isMain11.isChecked():
@@ -49,6 +52,17 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         cv2.imwrite(imageName, resized)
         return  QPixmap(imageName)
 
+    def addRowToTable(self, table, data):
+        table.insertRow(table.rowCount())
+        rowCount = table.rowCount()
+        columnCount = table.columnCount()
+        for j in range(columnCount):
+            table.setItem(rowCount-1, j, QTableWidgetItem(str(data[j])[:12]))
+
+    def fillSplineTable(self, a, b, c, d, xval):
+        for i in range(len(a)):
+            self.addRowToTable(self.splineCoefTable, [i, xval[i], xval[i+1], a[i], b[i], c[i], d[i]])
+
     def processMain1(self, calcf):
         n, A, B, a_, b_ = self.parseCoefs()
         data = calcf(n, a_, b_, A, B)
@@ -61,6 +75,8 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.FuncPlane.setPixmap(self.resizeImage("../planes/func.png", self.FuncPlane))
         self.DerPlane.setPixmap(self.resizeImage("../planes/funcd.png", self.DerPlane))
         self.Der2Plane.setPixmap(self.resizeImage("../planes/func2d.png", self.Der2Plane))
+        self.fillSplineTable(*(data[1]), data[5])
+
 
     def setUnchecked(self, ignored):
         for i in range(len(self.elems)):
