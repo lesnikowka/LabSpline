@@ -28,6 +28,9 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.splineCoefTable.setColumnCount(7)
         self.splineCoefTable.setHorizontalHeaderLabels(["i", "xi-1", "xi", "ai", "bi", "ci", "di"])
         self.splineCoefTable.verticalHeader().hide()
+        self.ErrorRateTable.setColumnCount(11)
+        self.ErrorRateTable.setHorizontalHeaderLabels(["i", "xi", "F(xi)", "S(xi)", "F(xi)-S(xi)", "F'(xi)", "S'(xi)", "F'(xi)-S'(xi)", "F''(xi)", "S''(xi)", "F''(xi)-S''(xi)"])
+        self.ErrorRateTable.verticalHeader().hide()
 
         self.main1info = """Сетка сплайна: n = %
 Контрольная сетка: N = %
@@ -67,16 +70,30 @@ max|F''(xi)-S''(xi)| = %
         cv2.imwrite(imageName, resized)
         return  QPixmap(imageName)
 
+    def clamp(self, number):
+        prec = 9
+        index = number.find("e")
+        if index == -1:
+            return number[:prec]
+        return number[0:min(prec, index)] + number[index:]
+
+
     def addRowToTable(self, table, data):
         table.insertRow(table.rowCount())
         rowCount = table.rowCount()
         columnCount = table.columnCount()
         for j in range(columnCount):
-            table.setItem(rowCount-1, j, QTableWidgetItem(str(data[j])[:12]))
+            table.setItem(rowCount-1, j, QTableWidgetItem(self.clamp(str(data[j]))))
 
     def fillSplineTable(self, a, b, c, d, xval):
         for i in range(len(a)):
             self.addRowToTable(self.splineCoefTable, [i, xval[i], xval[i+1], a[i], b[i], c[i], d[i]])
+
+    def fillMain1Table(self, data, err, err_, err__):
+        for i in range(len(data[0])):
+            self.addRowToTable(self.ErrorRateTable, [i, data[0][i], data[2][1][i], data[2][0][i], err[i],
+                                                     data[3][1][i], data[3][0][i], err_[i],
+                                                     data[4][1][i], data[4][0][i], err__[i]])
 
     def fillInfo(self, text, data):
         for val in data:
@@ -98,6 +115,7 @@ max|F''(xi)-S''(xi)| = %
         self.fillSplineTable(*(data[1]), data[5])
         self.info.setText(self.fillInfo(self.main1info, [n, 2 * n + 1, max(err), data[0][err.index(max(err))]
             , max(err_), data[0][err_.index(max(err_))], max(err__), data[0][err__.index(max(err__))]]))
+        self.fillMain1Table(data, err, err_, err__)
 
 
     def setUnchecked(self, ignored):
