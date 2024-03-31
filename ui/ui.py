@@ -54,6 +54,7 @@ max|F''(xi)-S''(xi)| = %
             self.processMain1(method.method.calculateMain12)
 
     def drawPlanes(self, data, name):
+        plt.figure(figsize=(20,10))
         for set_ in data:
             plt.plot(set_[0], set_[1])
         plt.savefig("../planes/" + name + ".png")
