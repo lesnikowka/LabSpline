@@ -84,11 +84,18 @@ max|F''(xi)-S''(xi)| = %
         for j in range(columnCount):
             table.setItem(rowCount-1, j, QTableWidgetItem(self.clamp(str(data[j]))))
 
+    def clearTable(self, table):
+        rowCount = table.rowCount()
+        for i in range(0, rowCount):
+            table.removeRow(0)
+
     def fillSplineTable(self, a, b, c, d, xval):
+        self.clearTable(self.splineCoefTable)
         for i in range(len(a)):
             self.addRowToTable(self.splineCoefTable, [i, xval[i], xval[i+1], a[i], b[i], c[i], d[i]])
 
     def fillMain1Table(self, data, err, err_, err__):
+        self.clearTable(self.ErrorRateTable)
         for i in range(len(data[0])):
             self.addRowToTable(self.ErrorRateTable, [i, data[0][i], data[2][1][i], data[2][0][i], err[i],
                                                      data[3][1][i], data[3][0][i], err_[i],
