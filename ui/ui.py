@@ -9,10 +9,9 @@ import cv2
 import imutils
 import subprocess
 
-import method.method
+sys.path.insert(1, '../method/')
+import method
 
-
-# from method import method
 
 class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def __init__(self):
@@ -52,15 +51,15 @@ max|F''(xi)-S''(xi)| = %
 
     def goButtonClicked(self):
         if self.isMain11.isChecked():
-            self.processMain(method.method.calculateMain11)
+            self.processMain(method.calculateMain11)
         elif self.isMain12.isChecked():
-            self.processMain(method.method.calculateMain12)
+            self.processMain(method.calculateMain12)
         elif self.isMain21.isChecked():
-            self.processMain(method.method.calculateMain21)
+            self.processMain(method.calculateMain21)
         elif self.isMain22.isChecked():
-            self.processMain(method.method.calculateMain22)
+            self.processMain(method.calculateMain22)
         elif self.isTest.isChecked():
-            self.processMain(method.method.calculateTf)
+            self.processMain(method.calculateTf)
 
     def drawPlanes(self, data, name):
         plt.figure(figsize=(16, 8))
