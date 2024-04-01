@@ -20,6 +20,7 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.setupUi(self)
         self.goButton.clicked.connect(self.goButtonClicked)
         self.helpButton.clicked.connect(self.showHelp)
+        self.optimBoundsButton.clicked.connect(self.calculateOptim)
         self.isTest.stateChanged.connect(self.testSetted)
         self.isMain11.stateChanged.connect(self.main11Setted)
         self.isMain12.stateChanged.connect(self.main12Setted)
@@ -85,7 +86,22 @@ max|F''(xi)-S''(xi)| = %
         plt.savefig("../planes/" + name + ".png")
         plt.clf()
 
-
+    def calculateOptim(self):
+        if self.isMain11.isChecked():
+            self.aBoundBox.setText(str(method.d2Task1Func1(float(self.aBox.text()))))
+            self.bBoundBox.setText(str(method.d2Task1Func1(float(self.bBox.text()))))
+        elif self.isMain12.isChecked():
+            self.aBoundBox.setText(str(method.d2Task1Func2(float(self.aBox.text()))))
+            self.bBoundBox.setText(str(method.d2Task1Func2(float(self.bBox.text()))))
+        elif self.isMain21.isChecked():
+            self.aBoundBox.setText(str(method.d2Task2Func1(float(self.aBox.text()))))
+            self.bBoundBox.setText(str(method.d2Task2Func1(float(self.bBox.text()))))
+        elif self.isMain22.isChecked():
+            self.aBoundBox.setText(str(method.d2Task2Func2(float(self.aBox.text()))))
+            self.bBoundBox.setText(str(method.d2Task2Func2(float(self.bBox.text()))))
+        elif self.isTest.isChecked():
+            self.aBoundBox.setText(str(method.d2tf(float(self.aBox.text()))))
+            self.bBoundBox.setText(str(method.d2tf(float(self.bBox.text()))))
 
     def parseCoefs(self):
         return int(self.nBox.text()), float(self.aBoundBox.text()), float(self.bBoundBox.text()), float(
