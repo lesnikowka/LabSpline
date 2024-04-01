@@ -64,6 +64,7 @@ def dTask2Func1(x):
 def d2Task2Func1(x):
     return d2Task1Func1(x)
 
+
 def Task2Func2(x):
     return (x ** 0.5) * np.sin(x) + np.cos(10)
 
@@ -147,7 +148,7 @@ def splain(A, B, C, D, X, n, x):
     for i in range(1, len(X)):
         if x >= X[i - 1] and x < X[i]:
             return A[i - 1] + B[i - 1] * (x - X[i]) + (C[i - 1] / 2) * ((x - X[i]) ** 2) + (D[i - 1] / 6) * (
-                        (x - X[i]) ** 3)
+                    (x - X[i]) ** 3)
         elif x == X[i]:
             return A[i - 1]
 

@@ -122,8 +122,8 @@
      <rect>
       <x>20</x>
       <y>11</y>
-      <width>261</width>
-      <height>621</height>
+      <width>273</width>
+      <height>671</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -175,6 +175,13 @@
       <widget class="QCheckBox" name="isTest">
        <property name="text">
         <string>Тестовая</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="optimBoundsButton">
+       <property name="text">
+        <string>Посчитать оптимальные граничные условия</string>
        </property>
       </widget>
      </item>

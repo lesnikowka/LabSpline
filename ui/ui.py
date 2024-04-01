@@ -8,6 +8,7 @@ from PyQt5.QtGui import QPixmap
 import cv2
 import imutils
 import subprocess
+import numpy as np
 
 sys.path.insert(1, '../method/')
 import method
@@ -51,15 +52,15 @@ max|F''(xi)-S''(xi)| = %
 
     def goButtonClicked(self):
         if self.isMain11.isChecked():
-            self.processMain(method.calculateMain11)
+            self.processMain(method.calculateMain11, method.Task1Func1, method.dTask1Func1, method.d2Task1Func1)
         elif self.isMain12.isChecked():
-            self.processMain(method.calculateMain12)
+            self.processMain(method.calculateMain12, method.Task1Func2, method.dTask1Func2, method.d2Task1Func2)
         elif self.isMain21.isChecked():
-            self.processMain(method.calculateMain21)
+            self.processMain(method.calculateMain21, method.Task2Func1, method.dTask2Func1, method.d2Task2Func1)
         elif self.isMain22.isChecked():
-            self.processMain(method.calculateMain22)
+            self.processMain(method.calculateMain22, method.Task2Func2, method.dTask2Func2, method.d2Task2Func2)
         elif self.isTest.isChecked():
-            self.processMain(method.calculateTf)
+            self.processMain(method.calculateTf, method.tf, method.dtf, method.d2tf)
 
     def drawPlanes(self, data, name):
         plt.figure(figsize=(16, 8))
@@ -68,6 +69,23 @@ max|F''(xi)-S''(xi)| = %
         plt.legend(('S(x)', 'F(x)', '|F(x)-S(x)|'))
         plt.savefig("../planes/" + name + ".png")
         plt.clf()
+
+    def drawPlanesDense(self, coefs, func, xval, name):
+        left = float(self.aBox.text())
+        right = float(self.bBox.text())
+        X = np.linspace(left, right, 10000)
+        plt.figure(figsize=(16, 8))
+        plt.legend(('S(x)', 'F(x)', '|F(x)-S(x)|'))
+        spl = [method.splain(*coefs, xval, 0, x) for x in X]
+        fun = [func(x) for x in X]
+        err = [abs(spl[i]-fun[i]) for i in range(len(spl))]
+        plt.plot(X, spl)
+        plt.plot(X, fun)
+        plt.plot(X, err)
+        plt.savefig("../planes/" + name + ".png")
+        plt.clf()
+
+
 
     def parseCoefs(self):
         return int(self.nBox.text()), float(self.aBoundBox.text()), float(self.bBoundBox.text()), float(
@@ -122,15 +140,22 @@ max|F''(xi)-S''(xi)| = %
     def showHelp(self):
         subprocess.run("python helpui.py")
 
-    def processMain(self, calcf):
+    def processMain(self, calcf, func, funcd, func2d):
         n, A, B, a_, b_ = self.parseCoefs()
         data = calcf(n, a_, b_, A, B)
         err = self.getErr(*(data[2]))
         err_ = self.getErr(*(data[3]))
         err__ = self.getErr(*(data[4]))
-        self.drawPlanes([[data[0], data[2][0]], [data[0], data[2][1]], [data[0], err]], "func")
-        self.drawPlanes([[data[0], data[3][0]], [data[0], data[3][1]], [data[0], err_]], "funcd")
-        self.drawPlanes([[data[0], data[4][0]], [data[0], data[4][1]], [data[0], err__]], "func2d")
+        #self.drawPlanes([[data[0], data[2][0]], [data[0], data[2][1]], [data[0], err]], "func")
+        #self.drawPlanes([[data[0], data[3][0]], [data[0], data[3][1]], [data[0], err_]], "funcd")
+        #self.drawPlanes([[data[0], data[4][0]], [data[0], data[4][1]], [data[0], err__]], "func2d")
+        coefs = data[1]
+        xval = data[5]
+        self.drawPlanesDense(coefs, func, xval, "func")
+        coefs = method.splainDer(*coefs)
+        self.drawPlanesDense(coefs, funcd, xval, "funcd")
+        coefs = method.splainDer(*coefs)
+        self.drawPlanesDense(coefs, func2d, xval, "func2d")
         self.FuncPlane.setPixmap(self.resizeImage("../planes/func.png", self.FuncPlane))
         self.DerPlane.setPixmap(self.resizeImage("../planes/funcd.png", self.DerPlane))
         self.Der2Plane.setPixmap(self.resizeImage("../planes/func2d.png", self.Der2Plane))
