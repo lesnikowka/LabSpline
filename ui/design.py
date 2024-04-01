@@ -155,7 +155,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Spline"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Лабораторная работа №1. Построение кубических сплайнов"))
         self.splineCoefTab.setTabText(self.splineCoefTab.indexOf(self.FuncPlaneTab), _translate("MainWindow", "Гр. функций"))
         self.splineCoefTab.setTabText(self.splineCoefTab.indexOf(self.DerPlaneTab), _translate("MainWindow", "Гр. производных"))
         self.splineCoefTab.setTabText(self.splineCoefTab.indexOf(self.Der2PlaneTab), _translate("MainWindow", "Гр. 2 производных"))

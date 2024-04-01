@@ -49,9 +49,13 @@ max|F''(xi)-S''(xi)| = %
 
     def goButtonClicked(self):
         if self.isMain11.isChecked():
-            self.processMain1(method.method.calculateMain11)
+            self.processMain(method.method.calculateMain11)
         elif self.isMain12.isChecked():
-            self.processMain1(method.method.calculateMain12)
+            self.processMain(method.method.calculateMain12)
+        elif self.isMain21.isChecked():
+            self.processMain(method.method.calculateMain21)
+        elif self.isMain22.isChecked():
+            self.processMain(method.method.calculateMain22)
 
     def drawPlanes(self, data, name):
         plt.figure(figsize=(20,10))
@@ -95,7 +99,7 @@ max|F''(xi)-S''(xi)| = %
         for i in range(len(a)):
             self.addRowToTable(self.splineCoefTable, [i, xval[i], xval[i+1], a[i], b[i], c[i], d[i]])
 
-    def fillMain1Table(self, data, err, err_, err__):
+    def fillMainTable(self, data, err, err_, err__):
         self.clearTable(self.ErrorRateTable)
         for i in range(len(data[0])):
             self.addRowToTable(self.ErrorRateTable, [i, data[0][i], data[2][1][i], data[2][0][i], err[i],
@@ -107,7 +111,7 @@ max|F''(xi)-S''(xi)| = %
             text = text.replace("%", str(val), 1)
         return text
 
-    def processMain1(self, calcf):
+    def processMain(self, calcf):
         n, A, B, a_, b_ = self.parseCoefs()
         data = calcf(n, a_, b_, A, B)
         err = self.getErr(*(data[2]))
@@ -122,7 +126,7 @@ max|F''(xi)-S''(xi)| = %
         self.fillSplineTable(*(data[1]), data[5])
         self.info.setText(self.fillInfo(self.main1info, [n, 2 * n + 1, max(err), data[0][err.index(max(err))]
             , max(err_), data[0][err_.index(max(err_))], max(err__), data[0][err__.index(max(err__))]]))
-        self.fillMain1Table(data, err, err_, err__)
+        self.fillMainTable(data, err, err_, err__)
 
 
     def setUnchecked(self, ignored):
