@@ -8,6 +8,15 @@ def tf(x):
         return x ** 3 + 3 * x ** 2
     return -x ** 3 + 3 * x ** 2
 
+def dtf(x):
+    if x >= -1 and x <= 0:
+        return 3 * x ** 2 + 6 * x
+    return -3 * x ** 2 + 6 * x
+
+def d2tf(x):
+    if x >= -1 and x <= 0:
+        return 6 * x + 6
+    return -6 * x + 6
 
 #Функции для основной задачи 1
 def Task1Func1(x):
@@ -140,7 +149,7 @@ def splainDer(a, b, c, d):
         d_[i] = 0
     return a_, b_, c_, d_
 
-def calculateMain(N, A, B, a_, b_, func, funcd, func2d):
+def calculate(N, A, B, a_, b_, func, funcd, func2d):
     a, b, c, d, xval = splainCoef(A, B, N, a_, b_, func)
     a_, b_, c_, d_ = splainDer(a,b,c,d)
     a__, b__, c__, d__ = splainDer(a_, b_, c_, d_)
@@ -154,13 +163,16 @@ def calculateMain(N, A, B, a_, b_, func, funcd, func2d):
 
     return xx, [a,b,c,d], [y,yy], [y_,yy_], [y__,yy__], xval
 
+def calculateTf(N, A, B, a_, b_):
+    return calculate(N, A, B, a_, b_, tf, dtf, d2tf)
+
 def calculateMain11(N, A, B, a_, b_):
-    return calculateMain(N, A, B, a_, b_, Task1Func1, dTask1Func1, d2Task1Func1)
+    return calculate(N, A, B, a_, b_, Task1Func1, dTask1Func1, d2Task1Func1)
 
 def calculateMain12(N, A, B, a_, b_):
-    return calculateMain(N, A, B, a_, b_, Task1Func2, dTask1Func2, dTask1Func2)
+    return calculate(N, A, B, a_, b_, Task1Func2, dTask1Func2, dTask1Func2)
 def calculateMain21(N, A, B, a_, b_):
-    return calculateMain(N, A, B, a_, b_, Task2Func1, dTask2Func1, d2Task2Func1)
+    return calculate(N, A, B, a_, b_, Task2Func1, dTask2Func1, d2Task2Func1)
 
 def calculateMain22(N, A, B, a_, b_):
-    return calculateMain(N, A, B, a_, b_, Task2Func2, dTask2Func2, dTask2Func2)
+    return calculate(N, A, B, a_, b_, Task2Func2, dTask2Func2, dTask2Func2)

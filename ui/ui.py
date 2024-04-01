@@ -56,11 +56,14 @@ max|F''(xi)-S''(xi)| = %
             self.processMain(method.method.calculateMain21)
         elif self.isMain22.isChecked():
             self.processMain(method.method.calculateMain22)
+        elif self.isTest.isChecked():
+            self.processMain(method.method.calculateTf)
 
     def drawPlanes(self, data, name):
-        plt.figure(figsize=(20,10))
+        plt.figure(figsize=(16,8))
         for set_ in data:
             plt.plot(set_[0], set_[1])
+        plt.legend(('S(x)', 'F(x)', '|F(x)-S(x)|'))
         plt.savefig("../planes/" + name + ".png")
         plt.clf()
 
