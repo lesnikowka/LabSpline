@@ -140,6 +140,9 @@ class Ui_MainWindow(object):
         self.info.setText("")
         self.info.setObjectName("info")
         self.verticalLayout.addWidget(self.info)
+        self.helpButton = QtWidgets.QPushButton(self.centralwidget)
+        self.helpButton.setGeometry(QtCore.QRect(20, 690, 261, 61))
+        self.helpButton.setObjectName("helpButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1754, 26))
@@ -150,7 +153,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.splineCoefTab.setCurrentIndex(0)
+        self.splineCoefTab.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -179,3 +182,4 @@ class Ui_MainWindow(object):
         self.aBoundBox.setText(_translate("MainWindow", "0"))
         self.goButton.setText(_translate("MainWindow", "Аппроксимировать"))
         self.label_9.setText(_translate("MainWindow", "Справка:"))
+        self.helpButton.setText(_translate("MainWindow", "Помощь"))

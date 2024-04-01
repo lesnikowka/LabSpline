@@ -12,13 +12,14 @@ import subprocess
 import method.method
 
 
-#from method import method
+# from method import method
 
 class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.goButton.clicked.connect(self.goButtonClicked)
+        self.helpButton.clicked.connect(self.showHelp)
         self.isTest.stateChanged.connect(self.testSetted)
         self.isMain11.stateChanged.connect(self.main11Setted)
         self.isMain12.stateChanged.connect(self.main12Setted)
@@ -29,7 +30,9 @@ class MainWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
         self.splineCoefTable.setHorizontalHeaderLabels(["i", "xi-1", "xi", "ai", "bi", "ci", "di"])
         self.splineCoefTable.verticalHeader().hide()
         self.ErrorRateTable.setColumnCount(11)
-        self.ErrorRateTable.setHorizontalHeaderLabels(["i", "xi", "F(xi)", "S(xi)", "F(xi)-S(xi)", "F'(xi)", "S'(xi)", "F'(xi)-S'(xi)", "F''(xi)", "S''(xi)", "F''(xi)-S''(xi)"])
+        self.ErrorRateTable.setHorizontalHeaderLabels(
+            ["i", "xi", "F(xi)", "S(xi)", "F(xi)-S(xi)", "F'(xi)", "S'(xi)", "F'(xi)-S'(xi)", "F''(xi)", "S''(xi)",
+             "F''(xi)-S''(xi)"])
         self.ErrorRateTable.verticalHeader().hide()
 
         self.main1info = """Сетка сплайна: n = %
@@ -60,7 +63,7 @@ max|F''(xi)-S''(xi)| = %
             self.processMain(method.method.calculateTf)
 
     def drawPlanes(self, data, name):
-        plt.figure(figsize=(16,8))
+        plt.figure(figsize=(16, 8))
         for set_ in data:
             plt.plot(set_[0], set_[1])
         plt.legend(('S(x)', 'F(x)', '|F(x)-S(x)|'))
@@ -68,15 +71,18 @@ max|F''(xi)-S''(xi)| = %
         plt.clf()
 
     def parseCoefs(self):
-        return int(self.nBox.text()), float(self.aBoundBox.text()), float(self.bBoundBox.text()), float(self.aBox.text()), float(self.bBox.text())
+        return int(self.nBox.text()), float(self.aBoundBox.text()), float(self.bBoundBox.text()), float(
+            self.aBox.text()), float(self.bBox.text())
+
     def getErr(self, y1, y2):
         return [abs(y1[i] - y2[i]) for i in range(len(y1))]
+
     def resizeImage(self, imageName, plane):
         height = plane.size().height()
         image = cv2.imread(imageName)
         resized = imutils.resize(image, height=height)
         cv2.imwrite(imageName, resized)
-        return  QPixmap(imageName)
+        return QPixmap(imageName)
 
     def clamp(self, number):
         prec = 9
@@ -90,7 +96,7 @@ max|F''(xi)-S''(xi)| = %
         rowCount = table.rowCount()
         columnCount = table.columnCount()
         for j in range(columnCount):
-            table.setItem(rowCount-1, j, QTableWidgetItem(self.clamp(str(data[j]))))
+            table.setItem(rowCount - 1, j, QTableWidgetItem(self.clamp(str(data[j]))))
 
     def clearTable(self, table):
         rowCount = table.rowCount()
@@ -100,7 +106,7 @@ max|F''(xi)-S''(xi)| = %
     def fillSplineTable(self, a, b, c, d, xval):
         self.clearTable(self.splineCoefTable)
         for i in range(len(a)):
-            self.addRowToTable(self.splineCoefTable, [i, xval[i], xval[i+1], a[i], b[i], c[i], d[i]])
+            self.addRowToTable(self.splineCoefTable, [i, xval[i], xval[i + 1], a[i], b[i], c[i], d[i]])
 
     def fillMainTable(self, data, err, err_, err__):
         self.clearTable(self.ErrorRateTable)
@@ -113,6 +119,9 @@ max|F''(xi)-S''(xi)| = %
         for val in data:
             text = text.replace("%", str(val), 1)
         return text
+
+    def showHelp(self):
+        subprocess.run("python helpui.py")
 
     def processMain(self, calcf):
         n, A, B, a_, b_ = self.parseCoefs()
@@ -131,7 +140,6 @@ max|F''(xi)-S''(xi)| = %
             , max(err_), data[0][err_.index(max(err_))], max(err__), data[0][err__.index(max(err__))]]))
         self.fillMainTable(data, err, err_, err__)
 
-
     def setUnchecked(self, ignored):
         for i in range(len(self.elems)):
             if not self.elems[i] is ignored:
@@ -139,12 +147,16 @@ max|F''(xi)-S''(xi)| = %
 
     def testSetted(self):
         self.setUnchecked(self.isTest)
+
     def main11Setted(self):
         self.setUnchecked(self.isMain11)
+
     def main12Setted(self):
         self.setUnchecked(self.isMain12)
+
     def main21Setted(self):
         self.setUnchecked(self.isMain21)
+
     def main22Setted(self):
         self.setUnchecked(self.isMain22)
 
