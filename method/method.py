@@ -23,12 +23,17 @@ def Task1Func1(x):
     return np.log(x + 1) / (x + 1) 
 
 
+#def dTask1Func1(x): #Производная первой функции
+#    return (x + (-x - 1) * np.log(x + 1)) / (x ** 3 + x ** 2)
+
 def dTask1Func1(x): #Производная первой функции
-    return (x + (-x - 1) * np.log(x + 1)) / (x ** 3 + x ** 2)
+    return (1 - np.log(x+1)) / (x+1)**2
 
+#def d2Task1Func1(x): #Вторая производная первой функции
+#    return (-np.log(x + 1) * (x ** 3 + x ** 2) - 3 * x ** 3 - 2 * x ** 2 - 3 * np.log(x + 1) * x ** 2 * (-x - 1) - 2 * np.log(x + 1) * x * (-x - 1)) / (x ** 3 + x ** 2) ** 2
 
-def d2Task1Func1(x): #Вторая производная первой функции
-    return (-np.log(x + 1) * (x ** 3 + x ** 2) - 3 * x ** 3 - 2 * x ** 2 - 3 * np.log(x + 1) * x ** 2 * (-x - 1) - 2 * np.log(x + 1) * x * (-x - 1)) / (x ** 3 + x ** 2) ** 2
+def d2Task1Func1(x):
+    return (-2*(x+1)*(1-np.log(x+1)) - x - 1) / (x+1)**4
 
 
 def Task1Func2(x):
