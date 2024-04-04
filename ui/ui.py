@@ -71,18 +71,18 @@ max|F''(xi)-S''(xi)| = %
         plt.savefig("../planes/" + name + ".png")
         plt.clf()
 
-    def drawPlanesDense(self, coefs, func, xval, name):
+    def drawPlanesDense(self, coefs, func, xval, name, legend):
         left = float(self.aBox.text())
         right = float(self.bBox.text())
         X = np.linspace(left, right, 10000)
         plt.figure(figsize=(16, 8))
-        plt.legend(('S(x)', 'F(x)', '|F(x)-S(x)|'))
         spl = [method.splain(*coefs, xval, 0, x) for x in X]
         fun = [func(x) for x in X]
         err = [abs(spl[i]-fun[i]) for i in range(len(spl))]
         plt.plot(X, spl)
         plt.plot(X, fun)
         plt.plot(X, err)
+        plt.legend(legend)
         plt.savefig("../planes/" + name + ".png")
         plt.clf()
 
@@ -167,11 +167,11 @@ max|F''(xi)-S''(xi)| = %
         #self.drawPlanes([[data[0], data[4][0]], [data[0], data[4][1]], [data[0], err__]], "func2d")
         coefs = data[1]
         xval = data[5]
-        self.drawPlanesDense(coefs, func, xval, "func")
+        self.drawPlanesDense(coefs, func, xval, "func", ('S(x)', 'F(x)', '|F(x)-S(x)|'))
         coefs = method.splainDer(*coefs)
-        self.drawPlanesDense(coefs, funcd, xval, "funcd")
+        self.drawPlanesDense(coefs, funcd, xval, "funcd", ('S\'(x)', 'F\'(x)', '|F\'(x)-S\'(x)|'))
         coefs = method.splainDer(*coefs)
-        self.drawPlanesDense(coefs, func2d, xval, "func2d")
+        self.drawPlanesDense(coefs, func2d, xval, "func2d", ('S\'\'(x)', 'F\'\'(x)', '|F\'\'(x)-S\'\'(x)|'))
         self.FuncPlane.setPixmap(self.resizeImage("../planes/func.png", self.FuncPlane))
         self.DerPlane.setPixmap(self.resizeImage("../planes/funcd.png", self.DerPlane))
         self.Der2Plane.setPixmap(self.resizeImage("../planes/func2d.png", self.Der2Plane))
