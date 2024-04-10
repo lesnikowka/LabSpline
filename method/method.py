@@ -54,27 +54,27 @@ def d2Task1Func2(x):  # Вторая производная второй фун�
 
 # Функции для основной задачи 2
 def Task2Func1(x):
-    return np.log(x + 1) / (x + 1) + np.cos(10)
+    return np.log(x + 1) / (x + 1) + np.cos(10*x)
 
 
 def dTask2Func1(x):
-    return dTask1Func1(x)
+    return dTask1Func1(x) - 10*np.sin(10*x)
 
 
 def d2Task2Func1(x):
-    return d2Task1Func1(x)
+    return d2Task1Func1(x) - 100*np.cos(10*x)
 
 
 def Task2Func2(x):
-    return (x ** 0.5) * np.sin(x) + np.cos(10)
+    return Task1Func2(x) + np.cos(10*x)
 
 
 def dTask2Func2(x):
-    return dTask1Func2(x)
+    return dTask1Func2(x) - 10*np.sin(10*x)
 
 
 def d2Task2Func2(x):
-    return d2Task1Func2(x)
+    return d2Task1Func2(x) - 100*np.cos(10*x)
 
 
 def initCoeff(n, h, left, right, fval):
@@ -190,7 +190,7 @@ def calculateMain11(N, A, B, a_, b_):
 
 
 def calculateMain12(N, A, B, a_, b_):
-    return calculate(N, A, B, a_, b_, Task1Func2, dTask1Func2, dTask1Func2)
+    return calculate(N, A, B, a_, b_, Task1Func2, dTask1Func2, d2Task1Func2)
 
 
 def calculateMain21(N, A, B, a_, b_):
@@ -198,4 +198,4 @@ def calculateMain21(N, A, B, a_, b_):
 
 
 def calculateMain22(N, A, B, a_, b_):
-    return calculate(N, A, B, a_, b_, Task2Func2, dTask2Func2, dTask2Func2)
+    return calculate(N, A, B, a_, b_, Task2Func2, dTask2Func2, d2Task2Func2)
